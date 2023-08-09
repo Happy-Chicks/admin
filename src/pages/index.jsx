@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import TopBar from "../components/topbar";
+import StatsContainer from "../components/statsContainer";
 
 export default function Home() {
   return (
@@ -12,12 +13,29 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-full h-screen">
-        <div className="w-full h-full ">
+        <div className="w-full h-full bg-b ">
           <div className="w-full h-[10%] border-4 border-black">
             <TopBar />
           </div>
-          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black">
-            <p>Dashboard</p>
+          <div className="w-full mt-[1.5%]  border-4 border-black flex flex-row ">
+            {/* stats container and top employee ratings */}
+
+            <div className=" h-200 w-[100%] flex flex-row items-center justify-between ">
+              <div className="border w-[70%]  ">
+                {/* statsContainer */}
+                <StatsContainer />
+              </div>
+              <div className="border flex flex-col">
+                {/* top employee ratings */}
+                <div>{/* Top Employees */}</div>
+                <div>{/* Top Employee Details */}</div>
+              </div>
+            </div>
+            <div className="bg-blue-500 flex flex-row w-[40%]">
+              <div>{/* Information Container */}</div>
+              <div>{/* Overall Statistics */}</div>
+              <div>{/* empty div */}</div>
+            </div>
           </div>
         </div>
       </main>
