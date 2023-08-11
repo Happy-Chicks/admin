@@ -21,11 +21,11 @@ export default function Home() {
           {/* 1st row */}
           <div className="w-full flex flex-row border border-red-500 py-5 px-5 gap-5">
             {/* statsContainer */}
-            <div className="w-[75%] border border-green-600 py-5 flex justify-center">
+            <div className="w-[70%] border bg-white px-10 py-5 flex justify-center">
               <StatsContainer />
             </div>
             {/* Top Employee */}
-            <div className="w-[25%] border border-green-500 flex flex-col gap-5">
+            <div className="w-[30%] border 0 bg-white flex flex-col gap-5">
               {/* <div className="bg-red-400 py-10 px-5"></div>
               <div className="bg-red-400 py-10 px-5"></div> */}
             </div>
