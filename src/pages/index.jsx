@@ -17,24 +17,17 @@ export default function Home() {
           <div className="w-full h-[10%] border-4 border-black">
             <TopBar />
           </div>
-          <div className="w-full mt-[1.5%]  border-4 border-black flex flex-row ">
-            {/* stats container and top employee ratings */}
 
-            <div className=" h-200 w-[100%] flex flex-row items-center justify-between ">
-              <div className="border w-[70%]  ">
-                {/* statsContainer */}
-                <StatsContainer />
-              </div>
-              <div className="border flex flex-col">
-                {/* top employee ratings */}
-                <div>{/* Top Employees */}</div>
-                <div>{/* Top Employee Details */}</div>
-              </div>
+          {/* 1st row */}
+          <div className="w-full flex flex-row border border-red-500 py-5 px-5 gap-5">
+            {/* statsContainer */}
+            <div className="w-[75%] border border-green-600 py-5 flex justify-center">
+              <StatsContainer />
             </div>
-            <div className="bg-blue-500 flex flex-row w-[40%]">
-              <div>{/* Information Container */}</div>
-              <div>{/* Overall Statistics */}</div>
-              <div>{/* empty div */}</div>
+            {/* Top Employee */}
+            <div className="w-[25%] border border-green-500 flex flex-col gap-5">
+              {/* <div className="bg-red-400 py-10 px-5"></div>
+              <div className="bg-red-400 py-10 px-5"></div> */}
             </div>
           </div>
         </div>

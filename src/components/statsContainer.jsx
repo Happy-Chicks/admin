@@ -2,18 +2,20 @@ import React from "react";
 
 const StatsContainer = () => {
   return (
-    <div className=" items-center justify-center">
-      <div className="flex flex-row items-center justify-center space-x-4 bg-red-500"> 
-      <button>Mortality Rate</button>
-      <button>Egg Production</button>
-      <button>Feed Consumption</button>
+    <div className="w-full flex justify-center">
+      <div className="flex text-Text font-semibold text-sm border rounded-md bg-Background p-2 space-x-2">
+        <div className="p-2 bg-SideBar rounded-md text-white">
+          <p>Mortality Rate</p>
+        </div>
+        <div className="p-2 rounded-md ">
+          <p>Egg Production</p>
+        </div>
+        <div className="p-2 rounded-md">
+          <p>Feed Consumption</p>
+        </div>
       </div>
-     <div className=""> 
-
-     </div>
     </div>
   );
 };
 
 export default StatsContainer;
-  
