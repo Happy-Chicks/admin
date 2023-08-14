@@ -25,3 +25,28 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+/* @layer utilities {
+  .elevation-1 {
+    @apply shadow-[0_2px_4px_rgba(0,0,0,0.1)];
+  }
+  .elevation-2 {
+    @apply shadow-[0_4px_8px_rgba(0,0,0,0.1)];
+  }
+  .elevation-3 {
+    @apply shadow-[0_6px_12px_rgba(0,0,0,0.1)];
+  }
+} */
+@layer utilities {
+  .elevation-1 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .elevation-2 {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .elevation-3 {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
