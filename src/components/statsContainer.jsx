@@ -24,8 +24,9 @@ const StatsContainer = () => {
 
       {/*  */}
       <div className="flex flex-col">
-        <div className="flex flex-row m-5 justify-between ">
-          <div className=" bg-ShedBackground w-72 h-40 px-5">
+        <div className="grid grid-cols-3 gap-5 mt-5">
+          {/*  */}
+          <div className=" bg-ShedBackground w-full h-40 px-5">
             <div className="flex flex-row justify-between">
               <p className="text-white text-base font-semibold space-x-6 pt-5">
                 {" "}
@@ -46,7 +47,7 @@ const StatsContainer = () => {
             </div>
           </div>
           {/* rate card  */}
-          <div className="w-72 h-40  flex justify-between">
+          <div className="w-full h-40 flex justify-between">
             <div className=" flex flex-col">
               <p className=" text-Text text-3xl w-10 font-semibold">
                 Mortality Rates
@@ -78,10 +79,12 @@ const StatsContainer = () => {
               />
             </div>
           </div>
-          <div className="w-72 h-40 px-5 bg-reportBackground flex justify-between">
+
+          {/*  */}
+          <div className="w-full h-40 px-5 bg-reportBackground flex justify-between">
             <div className="flex flex-col m-2 space-y-3">
               <p className="text-sm font-semibold text-white">Reported By</p>
-              <div className="w-20 h-20 rounded-full bg-[#D9D9D9]  border-4 border-white"></div>
+              <div className="w-12 h-12 rounded-full bg-[#D9D9D9]  border-4 border-white"></div>
               <p className="text-sm text-white font-semibold">Adams Martey</p>
             </div>
             <div className="flex flex-col items-center justify-center">

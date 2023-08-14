@@ -2,8 +2,100 @@ import Image from "next/image";
 import Head from "next/head";
 import TopBar from "../components/topbar";
 import StatsContainer from "../components/statsContainer";
+import { MaterialReactTable } from "material-react-table";
+import { useMemo } from "react";
 
 export default function Home() {
+  const information = [
+    {
+      shedId: 1,
+      farmerName: "Raphael Graham",
+      eggNumber: 1,
+      feedQuantity: 1,
+      brokenEggs: 1,
+      deadBirds: 1,
+    },
+    {
+      shedId: 1,
+      farmerName: "Raphael Graham",
+      eggNumber: 1,
+      feedQuantity: 1,
+      brokenEggs: 1,
+      deadBirds: 1,
+    },
+    {
+      shedId: 1,
+      farmerName: "Raphael Graham",
+      eggNumber: 1,
+      feedQuantity: 1,
+      brokenEggs: 1,
+      deadBirds: 1,
+    },
+    {
+      shedId: 1,
+      farmerName: "Raphael Graham",
+      eggNumber: 1,
+      feedQuantity: 1,
+      brokenEggs: 1,
+      deadBirds: 1,
+    },
+    {
+      shedId: 1,
+      farmerName: "Raphael Graham",
+      eggNumber: 1,
+      feedQuantity: 1,
+      brokenEggs: 1,
+      deadBirds: 1,
+    },
+    {
+      shedId: 1,
+      farmerName: "Raphael Graham",
+      eggNumber: 1,
+      feedQuantity: 1,
+      brokenEggs: 1,
+      deadBirds: 1,
+    },
+  ];
+
+  const columns = useMemo(() => [
+    {
+      header: "Shed ID",
+      // header: "ID",
+      accessorKey: "shedId",
+      size:1,
+      // enableResizing: false,
+    },
+    {
+      header: " Name",
+      // header: "Farmer Name",
+      accessorKey: "farmerName",
+      size:2,
+    },
+    {
+      header: "Eggs",
+      // header: "Number of Eggs",
+      accessorKey: "eggNumber",
+      size:2,
+    },
+    {
+      header: "Intake",
+      accessorKey: "feedQuantity",
+      size:2,
+    },
+    {
+      header: "Broken Eggs",
+      // header: "Number of Broken Eggs",
+      accessorKey: "brokenEggs",
+      size:2,
+    },
+    {
+      header: " Deceased",
+      // header: "Number of Dead Birds",
+      accessorKey: "deadBirds",
+      size:2,
+    },
+  ]);
+
   return (
     <>
       <Head>
@@ -13,21 +105,87 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="w-full h-screen">
-        <div className="w-full h-full bg-b ">
-          <div className="w-full h-[10%] border-4 border-black">
+        <div className="w-full h-full ">
+          <div className="w-full h-[10%] elevation-3">
             <TopBar />
           </div>
-
-          {/* 1st row */}
-          <div className="w-full flex flex-row border border-red-500 py-5 px-5 gap-5">
-            {/* statsContainer */}
-            <div className="w-[70%] border bg-white px-10 py-5 flex justify-center">
-              <StatsContainer />
+          <div className="w-full h-[90%] flex flex-col overflow-y-scroll ">
+            {/* 1st row */}
+            <div className="w-full flex flex-row border border-red-500 py-5 px-5 gap-5">
+              {/* statsContainer */}
+              <div className="w-[70%] border bg-white px-10 py-5 flex justify-center">
+                <StatsContainer />
+              </div>
+              {/* Top Employee */}
+              <div className="w-[30%] border 0 bg-white flex flex-col justify-between">
+                <div className=" py-5 px-5 h-[47%] flex flex-col">
+                  <div className="flex justify-between">
+                    <p className="uppercase text-base font-medium text-[#2F2F2F]">
+                      Top Employees
+                    </p>
+                    <p className="capitalize text-xs text-[#717070]">details</p>
+                  </div>
+                  <div className=" flex items-center justify-center mt-5">
+                    <div className="w-20 h-20 rounded-full bg-[#818181] items-center justify-center border relative left-[20%]"></div>
+                    <div className="w-20 h-20 rounded-full bg-[#2F2F2F] items-center justify-center border z-10"></div>
+                    <div className="w-20 h-20 rounded-full bg-[#818181] items-center justify-center borde relative right-[20%]"></div>
+                  </div>
+                  <div className="flex items-center justify-evenly space-x-2 mt-8">
+                    <p className="text-xs text-[#2F2F2F] font-bold">
+                      Name{" "}
+                      <span className="text-[#B1B1B1]">Richmond Martey</span>
+                    </p>
+                  </div>
+                </div>
+                <div className=" py-5 px-5 h-[47%]">
+                  <div className="flex">
+                    <p className="text-[#2F2F2F] font-bold text-xl">
+                      Top Employee Details
+                    </p>
+                  </div>
+                </div>
+                <div></div>
+              </div>
             </div>
-            {/* Top Employee */}
-            <div className="w-[30%] border 0 bg-white flex flex-col gap-5">
-              {/* <div className="bg-red-400 py-10 px-5"></div>
-              <div className="bg-red-400 py-10 px-5"></div> */}
+            <div className="flex border border-green-500 p-5 items-center justify-between">
+              <div className="border flex flex-col w-[60%] ">
+                <div className="flex flex-col">
+                  <p className="capitalize text-[#2F2F2F] font-bold ">
+                    information
+                  </p>
+                  <p className="text-xs font-semibold text-[#B2B2B2]">Today</p>
+                </div>
+
+                <div className=" w-[100%] p-2">
+                  <MaterialReactTable
+                    columns={columns}
+                    data={information}
+                    // enableRowSelection
+                    // enableColumnOrdering
+                    // enableGlobalFilter={false}
+                    enableColumnFilterModes={false}
+                    enableGlobalFilterSelection={false}
+                    enableColumnActions={false}
+                    enableFilters={false}
+                    enableFilterMatchHighlighting={false}
+                    enableDensityToggle={false}
+                    enableTopToolbar={false}
+                    enablePagination={false}
+                    // enableColumnResizing
+                    // columnResizeMode="onEnd"
+                    muiTableHeadCellProps={{
+                      sx: {
+                        width: "100%",
+                        // height: "10%",
+                        tableLayout:"fixed",
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="border flex flex-col">
+<div></div>
+              </div>
             </div>
           </div>
         </div>
