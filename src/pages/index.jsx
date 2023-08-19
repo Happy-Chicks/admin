@@ -62,37 +62,37 @@ export default function Home() {
       header: "Shed ID",
       // header: "ID",
       accessorKey: "shedId",
-      size:1,
+      size: 1,
       // enableResizing: false,
     },
     {
       header: " Name",
       // header: "Farmer Name",
       accessorKey: "farmerName",
-      size:2,
+      size: 2,
     },
     {
       header: "Eggs",
       // header: "Number of Eggs",
       accessorKey: "eggNumber",
-      size:2,
+      size: 2,
     },
     {
       header: "Intake",
       accessorKey: "feedQuantity",
-      size:2,
+      size: 2,
     },
     {
       header: "Broken Eggs",
       // header: "Number of Broken Eggs",
       accessorKey: "brokenEggs",
-      size:2,
+      size: 2,
     },
     {
       header: " Deceased",
       // header: "Number of Dead Birds",
       accessorKey: "deadBirds",
-      size:2,
+      size: 2,
     },
   ]);
 
@@ -177,14 +177,16 @@ export default function Home() {
                       sx: {
                         width: "100%",
                         // height: "10%",
-                        tableLayout:"fixed",
+                        tableLayout: "fixed",
                       },
                     }}
                   />
                 </div>
               </div>
-              <div className="border flex flex-col">
-<div></div>
+              <div className="border flex flex-col w-[40%]">
+                <div className="flex flex-col">
+                  <p className="capitalize text-[#2F2F2F] font-bold">overall statistics</p>
+                </div>
               </div>
             </div>
           </div>
