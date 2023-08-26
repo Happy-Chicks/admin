@@ -4,6 +4,10 @@ import TopBar from "../components/topbar";
 import StatsContainer from "../components/statsContainer";
 import { MaterialReactTable } from "material-react-table";
 import { useMemo } from "react";
+import SortTable from './../components/table/sort-table';
+import { tableHeadings } from './../constants/tableHeadings';
+import { tableBody } from "../constants/tableBody";
+
 
 export default function Home() {
   const information = [
@@ -56,45 +60,46 @@ export default function Home() {
       deadBirds: 1,
     },
   ];
+  const sortObject = { ID: "shedId", farmer_name: "farmerName" };
 
-  const columns = useMemo(() => [
-    {
-      header: "Shed ID",
-      // header: "ID",
-      accessorKey: "shedId",
-      size: 1,
-      // enableResizing: false,
-    },
-    {
-      header: " Name",
-      // header: "Farmer Name",
-      accessorKey: "farmerName",
-      size: 2,
-    },
-    {
-      header: "Eggs",
-      // header: "Number of Eggs",
-      accessorKey: "eggNumber",
-      size: 2,
-    },
-    {
-      header: "Intake",
-      accessorKey: "feedQuantity",
-      size: 2,
-    },
-    {
-      header: "Broken Eggs",
-      // header: "Number of Broken Eggs",
-      accessorKey: "brokenEggs",
-      size: 2,
-    },
-    {
-      header: " Deceased",
-      // header: "Number of Dead Birds",
-      accessorKey: "deadBirds",
-      size: 2,
-    },
-  ]);
+  // const columns = useMemo(() => [
+  //   {
+  //     header: "Shed ID",
+  //     // header: "ID",
+  //     accessorKey: "shedId",
+  //     size: 1,
+  //     // enableResizing: false,
+  //   },
+  //   {
+  //     header: " Name",
+  //     // header: "Farmer Name",
+  //     accessorKey: "farmerName",
+  //     size: 2,
+  //   },
+  //   {
+  //     header: "Eggs",
+  //     // header: "Number of Eggs",
+  //     accessorKey: "eggNumber",
+  //     size: 2,
+  //   },
+  //   {
+  //     header: "Intake",
+  //     accessorKey: "feedQuantity",
+  //     size: 2,
+  //   },
+  //   {
+  //     header: "Broken Eggs",
+  //     // header: "Number of Broken Eggs",
+  //     accessorKey: "brokenEggs",
+  //     size: 2,
+  //   },
+  //   {
+  //     header: " Deceased",
+  //     // header: "Number of Dead Birds",
+  //     accessorKey: "deadBirds",
+  //     size: 2,
+  //   },
+  // ]);
 
   return (
     <>
@@ -157,7 +162,7 @@ export default function Home() {
                 </div>
 
                 <div className=" w-[100%] p-2">
-                  <MaterialReactTable
+                  {/* <MaterialReactTable
                     columns={columns}
                     data={information}
                     // enableRowSelection
@@ -180,12 +185,28 @@ export default function Home() {
                         tableLayout: "fixed",
                       },
                     }}
+                  /> */}
+                  <SortTable
+                    headings={tableHeadings.request}
+                    body={tableBody.request}
+                    data={information}
+                    type={"request"}
+                    sortObject={sortObject}
+                    //       searchType={"name"}
+                    //       handleView={(item) => {
+                    //         router.push({
+                    //           pathname: `${URLS.protected.organizations}/1`,
+                    //         });
+                    //         localStorage.setItem("myRequest", JSON.stringify(item));
+                    //       }}
                   />
                 </div>
               </div>
               <div className="border flex flex-col w-[40%]">
                 <div className="flex flex-col">
-                  <p className="capitalize text-[#2F2F2F] font-bold">overall statistics</p>
+                  <p className="capitalize text-[#2F2F2F] font-bold">
+                    overall statistics
+                  </p>
                 </div>
               </div>
             </div>
