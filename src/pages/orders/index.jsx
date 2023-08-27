@@ -1,8 +1,17 @@
 import React from "react";
 import Head from "next/head";
 import TopBar from "../../components/topbar";
+import SortTable from './../../components/table/sort-table';
+import { tableHeadings } from "../../constants/tableHeadings";
 
 function Orders() {
+  const orderInformation =[{
+    farmerID:1,
+    customerName:"Roxanne Aryee",
+    numberOfCrates:200,
+    orderDate:"2022-05-01",
+    customerPhoneNumber:"+233507111876"
+  }]
   return (
     <>
       <Head>
@@ -17,7 +26,14 @@ function Orders() {
             <TopBar />
           </div>
           <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black">
-            <p>Orders</p>
+            <div className="h-full">
+              <SortTable
+                headings={tableHeadings.orderHeadings}
+                // body={orderBody.request}
+                data={orderInformation}
+                type={"orderBody"}
+              />
+            </div>
           </div>
         </div>
       </main>

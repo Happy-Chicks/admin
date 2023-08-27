@@ -1,8 +1,24 @@
 import React from "react";
 import Head from "next/head";
 import TopBar from "../../components/topbar";
+import SortTable from "../../components/table/sort-table";
+import { shedHeadings } from "../../constants/tableHeadings";
+import { shedBody } from "../../constants/tableBody";
+import { tableHeadings } from "./../../constants/tableHeadings";
 
 function Sheds() {
+  const information = [
+    {
+      farmerId: "#2333",
+      numberOfBirds: 500,
+      dailyFeedQuantity: 300,
+    },
+    {
+      farmerId: "#2333",
+      numberOfBirds: 500,
+      dailyFeedQuantity: 300,
+    },
+  ];
   return (
     <>
       <Head>
@@ -17,7 +33,14 @@ function Sheds() {
             <TopBar />
           </div>
           <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black">
-            <p>Sheds</p>
+            <div className="  h-full ">
+              <SortTable
+                headings={tableHeadings.shedHeadings}
+                // body={shedBody.request}
+                data={information}
+                type={"shedBody"}
+              />
+            </div>
           </div>
         </div>
       </main>

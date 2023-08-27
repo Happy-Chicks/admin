@@ -5,44 +5,45 @@ import farmer from "../../assets/images/farmer.png";
 import Image from "next/image";
 import SortTable from './../../components/table/sort-table';
 import { farmerHeadings } from '../../constants/tableHeadings';
-import {farmerBody} from '../../constants/tableBody'
+import {farmerBody, tableBody} from '../../constants/tableBody'
+import {tableHeadings} from "../../constants/tableHeadings"
 
 function Farmers() {
-  // const sortObject = { ID: "shedId", farmer_name: "farmerName" };
-  const farmerInformation=[
+  const sortObject = { ID: "shedId", farmer_name: "farmerName" };
+  const farmerInformation = [
     {
       shedId: 1,
-       farmerName: "Roxanne Aryee",
-       email: "grahamraaphael88@gmail.com",
-       phoneNumber:+233507111876,
-       address: "21 Mensah Kwao Osantro Rd",
-       role:"Farmer",
+      farmerName: "Roxanne Aryee",
+      email: "grahamraphael88@gmail.com",
+      phoneNumber: "+233507111876",
+      address: "21 Mensah Kwao Osantro Rd",
+      role: "Farmer",
     },
     {
       shedId: 2,
-       farmerName: "Roxanne Aryee",
-       email: "grahamraaphael88@gmail.com",
-       phoneNumber:+233507111876,
-       address: "21 Mensah Kwao Osantro Rd",
-       role:"Farmer",
+      farmerName: "Roxanne Aryee",
+      email: "grahamraphael88@gmail.com",
+      phoneNumber: "+233507111876",
+      address: "21 Mensah Kwao Osantro Rd",
+      role: "Farmer",
     },
     {
       shedId: 3,
-       farmerName: "Roxanne Aryee",
-       email: "grahamraaphael88@gmail.com",
-       phoneNumber:+233507111876,
-       address: "21 Mensah Kwao Osantro Rd",
-       role:"Farmer",
+      farmerName: "Roxanne Aryee",
+      email: "grahamraphael88@gmail.com",
+      phoneNumber: "+233507111876",
+      address: "21 Mensah Kwao Osantro Rd",
+      role: "Farmer",
     },
     {
       shedId: 4,
-       farmerName: "Roxanne Aryee",
-       email: "grahamraaphael88@gmail.com",
-       phoneNumber:+233507111876,
-       address: "21 Mensah Kwao Osantro Rd",
-       role:"Farmer",
+      farmerName: "Roxanne Aryee",
+      email: "grahamraphael88@gmail.com",
+      phoneNumber: "+233507111876",
+      address: "21 Mensah Kwao Osantro Rd",
+      role: "Farmer",
     },
-    ]
+  ];
   return (
 
     
@@ -58,7 +59,7 @@ function Farmers() {
           <div className="w-full h-[10%] border-4 border-black">
             <TopBar />
           </div>
-          <div className="w-full h-[90%] flex flex-col overflow-y-scroll">
+          <div className="w-full h-[87%] flex flex-col overflow-y-scroll">
             <div className="w-full flex border border-red-500 py-5 px-5 gap-5">
               <div className="w-[70%] border bg-white px-10 py-5 flex justify-center">
                 <div className="w-full flex flex-row justify-between">
@@ -144,11 +145,11 @@ function Farmers() {
             </div>
             <div>
               <SortTable
-               headings={farmerHeadings.request}
-                    body={farmerBody.request}
+               headings={tableHeadings.farmerHeadings}
+                    // body={tableBody.request}
                     data={farmerInformation}
-                    type={"request"}
-                    // sortObject={sortObject}
+                    type={"farmerBody"}
+                    sortObject={sortObject}
               />
             </div>
           </div>

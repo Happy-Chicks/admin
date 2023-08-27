@@ -1,8 +1,35 @@
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 import TopBar from "../../components/topbar";
+import farmer from "../../assets/images/farmer.png";
+import SortTable from "../../components/table/sort-table"
+import { farmerHeadings } from "../../constants/tableHeadings";
+import { farmerBody, managerBody } from "../../constants/tableBody";
+// import {managerBody} from "../../constants/managerbody"
+import { tableHeadings } from './../../constants/tableHeadings';
 
 function FarmManagers() {
+const farmManagerInformation = [
+  {
+    shedId: 1,
+    farmerName: "Roxanne Aryee",
+    email: "grahamraaphael88@gmail.com",
+    phoneNumber: "+233507111876",
+    address: "21 Mensah Kwao Osantro Rd",
+    role: "Farmer",
+  },
+  {
+    shedId: 1,
+    farmerName: "Roxanne Aryee",
+    email: "grahamraaphael88@gmail.com",
+    phoneNumber: "+233507111876",
+    address: "21 Mensah Kwao Osantro Rd",
+    role: "Farmer",
+  },
+];
+
+
   return (
     <>
       <Head>
@@ -16,13 +43,106 @@ function FarmManagers() {
           <div className="w-full h-[10%] border-4 border-black">
             <TopBar />
           </div>
-          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black">
-            <p>Farm managers</p>
+          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black flex flex-col">
+            <div className="w-full flex border border-red-500 py-5 px-5 gap-5">
+              <div className="w-[70%] border bg-white px-10 py-5 flex justify-center">
+                <div className="w-full flex flex-row justify-between">
+                  <div className="bg-[#D6C8C4] flex flex-col items-center">
+                    <div className="m-2">
+                      <p className="text-2xl font-bold text-white">
+                        Best Employees
+                      </p>
+                    </div>
+                    <div className="text-white space-y-8">
+                      <p>Best Employee</p>
+                      <p>Best Employee</p>
+                      <p>Best Employee</p>
+                      <p>Best Employee</p>
+                    </div>
+                  </div>
+                  <div className="border border-red-500 flex flex-col ">
+                    <div className="flex flex-row justify-evenly space-x-4">
+                      <div className="flex flex-col gap-8 ">
+                        <p className="text-[#505050] font-bold text-3xl">
+                          Farmers
+                        </p>
+                        <div className="flex space-x-2">
+                          <div className="w-14 h-14 rounded-full bg-[#D6C8C4] flex flex-col justify-center items-center">
+                            <p className="text-center text-xs font-bold text-[#306E88]">
+                              50
+                            </p>
+                            <div className="text-center text-xs font-bold text-[#306E88]">
+                              deaths
+                            </div>
+                          </div>
+                          <div className="w-14 h-14 rounded-full bg-[#306E88] flex flex-col justify-center items-center">
+                            <p className="text-[#D6C8C4] text-center text-xs font-bold">
+                              50
+                            </p>
+                            <div className="text-center text-xs font-bold text-[#D6C8C4]">
+                              deaths
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="rounded-bl-[50%] overflow-hidden">
+                        <Image
+                          src={farmer}
+                          alt="farmer"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border border-red-500">fjg</div>
+                </div>
+              </div>
+              <div className="w-[30%] border 0 bg-white flex flex-col justify-between space-y-10">
+                <div className=" py-5 px-5 h-[47%] flex flex-col">
+                  <div className="flex justify-between">
+                    <p className="uppercase text-base font-medium text-[#2F2F2F]">
+                      Top Employees
+                    </p>
+                    <p className="capitalize text-xs text-[#717070]">details</p>
+                  </div>
+                  <div className=" flex items-center justify-center mt-5">
+                    <div className="w-20 h-20 rounded-full bg-[#818181] items-center justify-center border relative left-[20%]"></div>
+                    <div className="w-20 h-20 rounded-full bg-[#2F2F2F] items-center justify-center border z-10"></div>
+                    <div className="w-20 h-20 rounded-full bg-[#818181] items-center justify-center borde relative right-[20%]"></div>
+                  </div>
+                  <div className="flex items-center justify-evenly space-x-2 mt-8">
+                    <p className="text-xs text-[#2F2F2F] font-bold">
+                      Name{" "}
+                      <span className="text-[#B1B1B1]">Richmond Martey</span>
+                    </p>
+                  </div>
+                </div>
+                <div className=" py-5 px-5 h-[47%]">
+                  <div className="flex">
+                    <p className="text-[#2F2F2F] font-bold text-xl">
+                      Top Employee Details
+                    </p>
+                  </div>
+                </div>
+                <div></div>
+              </div>
+            </div>
+            <div className="">
+              <div className="">
+                <SortTable
+                  headings={tableHeadings.farmerHeadings}
+                  // body={managerBody.request}
+                  data={farmManagerInformation}
+                  type={"managerBody"}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </main>
     </>
   );
+  
 }
 
 export default FarmManagers;

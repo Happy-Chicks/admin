@@ -22,7 +22,7 @@ export default function Home() {
     {
       shedId: 1,
       farmerName: "Raphael Graham",
-      eggNumber: 1,
+      eggNumber: "2 eggs",
       feedQuantity: 1,
       brokenEggs: 1,
       deadBirds: 1,
@@ -188,7 +188,7 @@ export default function Home() {
                   /> */}
                   <SortTable
                     headings={tableHeadings.request}
-                    body={tableBody.request}
+                    // body={tableBody.request}
                     data={information}
                     type={"request"}
                     sortObject={sortObject}
