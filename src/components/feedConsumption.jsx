@@ -34,13 +34,13 @@ const FeedConsumption = () => {
               <div className="w-20 h-20 rounded-full bg-[#DE9260] flex flex-col justify-center items-center">
                 <p className="text-center text-md font-bold text-white">50</p>
                 <p className="text-white text-xs font-semibold text-center">
-                  eggs
+                  units
                 </p>
               </div>
               <div className="w-20 h-20 rounded-full bg-[#672B0F] flex flex-col justify-center items-center">
                 <p className="text-center text-md font-bold text-white">50</p>
                 <p className="text-white text-xs font-semibold text-center">
-                  eggs
+                  units
                 </p>
               </div>
             </div>
@@ -48,7 +48,7 @@ const FeedConsumption = () => {
               <div className="flex items-center justify-center w-20 h-20 rounded-full bg-[#EDBB9A] flex-col ">
                 <p className="text-white text-md font-bold text-center">50</p>
                 <p className="text-white text-xs font-semibold text-center">
-                  eggs
+                  units
                 </p>
               </div>
             </div>
@@ -66,7 +66,7 @@ const FeedConsumption = () => {
                     50
                   </p>
                   <div className="text-center text-xs font-bold text-deathColor">
-                    deaths
+                    units
                   </div>
                 </div>
                 <div className="w-14 h-14 rounded-full bg-deathColor flex flex-col justify-center items-center ">
@@ -74,7 +74,7 @@ const FeedConsumption = () => {
                     50
                   </p>
                   <div className="text-center text-xs font-bold text-ShedBackground">
-                    deaths
+                    units
                   </div>
                 </div>
               </div>
@@ -109,7 +109,7 @@ const FeedConsumption = () => {
         <div className="grid grid-cols-6 px-5">
           {[1, 2, 3, 4, 5, 6]?.map((i, index) => (
             <div
-              key={id}
+              key={i}
               className={`bg-reportBackground flex flex-col w-32 h-32 px-4 py-2 mt-5 justify-between ${
                 index === 4 || index === 5 ? "ml-auto" : ""
               }`}
