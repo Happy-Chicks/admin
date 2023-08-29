@@ -5,8 +5,6 @@ import TopBar from "../../components/topbar";
 import farmer from "../../assets/images/farmer.png";
 import SortTable from "../../components/table/sort-table";
 import { farmerHeadings } from "../../constants/tableHeadings";
-// import { farmerBody, managerBody } from "../../constants/tableBody";
-// import {managerBody} from "../../constants/managerbody"
 import { tableHeadings } from "./../../constants/tableHeadings";
 import { useMemo, useEffect, useState } from "react";
 import { useSession, signIn } from "next-auth/react";

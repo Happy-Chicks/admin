@@ -5,7 +5,6 @@ import farmer from "../../assets/images/farmer.png";
 import Image from "next/image";
 import SortTable from "./../../components/table/sort-table";
 import { farmerHeadings } from "../../constants/tableHeadings";
-// import { farmerBody, tableBody } from "../../constants/tableBody";
 import { tableHeadings } from "../../constants/tableHeadings";
 import { useMemo, useEffect, useState } from "react";
 import { useSession, signIn } from "next-auth/react";
