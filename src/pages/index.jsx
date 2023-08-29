@@ -6,7 +6,7 @@ import { MaterialReactTable } from "material-react-table";
 import { useMemo, useEffect, useState } from "react";
 import SortTable from "./../components/table/sort-table";
 import { tableHeadings } from "./../constants/tableHeadings";
-import { tableBody } from "../constants/tableBody";
+// import { tableBody } from "../constants/tableBody";
 import { useSession, signIn } from "next-auth/react";
 import { ENDPOINTS } from "../constants/endpoints";
 import { shedRecordAxios } from "../tools/libraries/axios";

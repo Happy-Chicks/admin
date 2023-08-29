@@ -3,7 +3,7 @@ import Head from "next/head";
 import TopBar from "../../components/topbar";
 import SortTable from "../../components/table/sort-table";
 import { shedHeadings } from "../../constants/tableHeadings";
-import { shedBody } from "../../constants/tableBody";
+// import { shedBody } from "../../constants/tableBody";
 import { tableHeadings } from "./../../constants/tableHeadings";
 import { useMemo, useEffect, useState } from "react";
 import { useSession, signIn } from "next-auth/react";
