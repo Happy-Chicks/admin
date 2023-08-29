@@ -1,4 +1,38 @@
-const PriceListForm = () => {
+import React from "react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { ENDPOINTS } from "../constants/endpoints";
+import { priceListAxios } from "../tools/libraries/axios";
+
+const PriceListForm = ({ close }) => {
+  const { data: session } = useSession();
+  const [size, setSize] = useState();
+  const [price, setPrice] = useState();
+
+  const token = session?.user?.accessToken;
+  console.log(token);
+
+  //   useEffect(() => {}, []);
+
+  const createPriceList = () => {
+    // console.log(size, price);
+    priceListAxios
+      .post(
+        ENDPOINTS.CREATE_PRICE,
+        { crateName: size, cratePrice: price },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((result) => {
+        console.log(result.data);
+
+        close();
+        // setPriceList(result.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <div className="bg-white p-8 rounded border border-gray-200">
@@ -13,6 +47,10 @@ const PriceListForm = () => {
                 Crate Size
               </label>
               <input
+                onChange={(e) => {
+                  e.preventDefault();
+                  setSize(e.target.value);
+                }}
                 type="text"
                 name="name"
                 id="name"
@@ -28,6 +66,10 @@ const PriceListForm = () => {
                 Crate Price
               </label>
               <input
+                onChange={(e) => {
+                  e.preventDefault();
+                  setPrice(e.target.value);
+                }}
                 type="text"
                 name="name"
                 id="name"
@@ -38,6 +80,10 @@ const PriceListForm = () => {
           </div>
           <div className="space-x-4 mt-8">
             <button
+              onClick={(e) => {
+                e.preventDefault();
+                createPriceList();
+              }}
               type="submit"
               className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50"
             >

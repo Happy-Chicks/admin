@@ -51,27 +51,30 @@ function Management() {
           </div>
           <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4">
             {showShedForm && (
-              <ModalOverlay close={closeShedForm} component={<ShedForm />} />
+              <ModalOverlay
+                close={closeShedForm}
+                component={<ShedForm close={closeShedForm} />}
+              />
             )}
 
             {showFarmerForm && (
               <ModalOverlay
                 close={closeFarmerForm}
-                component={<FarmerForm />}
+                component={<FarmerForm close={closeFarmerForm} />}
               />
             )}
 
             {showFarmManagerForm && (
               <ModalOverlay
                 close={closeFarmManagerForm}
-                component={<FarmManagerForm />}
+                component={<FarmManagerForm close={closeFarmManagerForm} />}
               />
             )}
 
             {showPriceListForm && (
               <ModalOverlay
                 close={closePriceListForm}
-                component={<PriceListForm />}
+                component={<PriceListForm close={closePriceListForm} />}
               />
             )}
 
@@ -81,7 +84,7 @@ function Management() {
                   onClick={() => {
                     setShowFarmerForm(true);
                   }}
-                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl text-4xl"
                 >
                   Create Farmer
                 </div>
@@ -89,7 +92,7 @@ function Management() {
                   onClick={() => {
                     setShowFarmManagerForm(true);
                   }}
-                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl text-4xl"
                 >
                   Create Farm Manager
                 </div>
@@ -99,7 +102,7 @@ function Management() {
                   onClick={() => {
                     setShowShedForm(true);
                   }}
-                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl text-4xl"
                 >
                   Create Shed
                 </div>
@@ -107,7 +110,7 @@ function Management() {
                   onClick={() => {
                     setShowPriceListForm(true);
                   }}
-                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl text-4xl"
                 >
                   Create Price List
                 </div>

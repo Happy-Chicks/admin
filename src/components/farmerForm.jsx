@@ -1,6 +1,43 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { ENDPOINTS } from "../constants/endpoints";
+import { authAxios } from "../tools/libraries/axios";
 
-const FarmerForm = () => {
+const FarmerForm = ({ close }) => {
+  const { data: session } = useSession();
+
+  const [form, setForm] = useState({
+    lastName: "",
+    otherNames: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    password: "",
+  });
+
+  const token = session?.user?.accessToken;
+  console.log(token);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    // console.log(form);
+  };
+
+  const createFarmer = () => {
+    console.log(form);
+    authAxios
+      .post(ENDPOINTS.CREATE_USER, form, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        console.log(result.data);
+        close();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <div className="bg-white p-8 rounded border border-gray-200">
@@ -17,7 +54,8 @@ const FarmerForm = () => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="lastName"
+                onChange={handleChange}
                 id="name"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="Enter farmer last name"
@@ -32,7 +70,8 @@ const FarmerForm = () => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="otherNames"
+                onChange={handleChange}
                 id="name"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="Enter farmer other names"
@@ -48,6 +87,7 @@ const FarmerForm = () => {
               <input
                 type="text"
                 name="email"
+                onChange={handleChange}
                 id="email"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="farmer@gmail.com"
@@ -63,6 +103,7 @@ const FarmerForm = () => {
               <input
                 type="number"
                 name="phoneNumber"
+                onChange={handleChange}
                 id="phoneNumber"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="Phone Number"
@@ -78,14 +119,35 @@ const FarmerForm = () => {
               <input
                 type="text"
                 name="address"
+                onChange={handleChange}
                 id="address"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="Address"
               />
             </div>
+            <div>
+              <label
+                for="password"
+                className="text-sm text-gray-700 block mb-1 font-medium"
+              >
+                Password
+              </label>
+              <input
+                type="text"
+                name="password"
+                onChange={handleChange}
+                id="address"
+                className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+                placeholder="Password"
+              />
+            </div>
           </div>
           <div className="space-x-4 mt-8">
             <button
+              onClick={(e) => {
+                e.preventDefault();
+                createFarmer();
+              }}
               type="submit"
               className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50"
             >

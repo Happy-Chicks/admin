@@ -47,6 +47,7 @@ export const tableHeadings = {
     "farmer ID",
     "Collection Period",
     "Feed Quantity",
+    "Number of Crates",
     "Number of Egg Pieces",
     "Number of Broken Eggs",
     "Number of Dead Birds",

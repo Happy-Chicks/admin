@@ -84,6 +84,7 @@ const Mortality = () => {
         <div className="grid grid-cols-6 px-5">
           {[1, 2, 3, 4, 5, 6]?.map((i, index) => (
             <div
+              key={id}
               className={`bg-reportBackground flex flex-col w-32 h-32 px-4 py-2 mt-5 justify-between ${
                 index === 4 || index === 5 ? "ml-auto" : ""
               }`}

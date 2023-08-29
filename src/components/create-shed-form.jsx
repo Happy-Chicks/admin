@@ -1,11 +1,45 @@
 import React from "react";
+import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { ENDPOINTS } from "../constants/endpoints";
+import { shedAxios } from "../tools/libraries/axios";
 
-const ShedForm = () => {
+const ShedForm = ({ close }) => {
+  const { data: session } = useSession();
+  const token = session?.user?.accessToken;
+
+  console.log(token);
+
+  const [form, setForm] = useState({
+    farmerId: "",
+    numberOfBirds: "",
+    dailyFeedQuantity: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    // console.log(form);
+  };
+
+  const createShed = () => {
+    console.log(form);
+    shedAxios
+      .post(ENDPOINTS.CREATE_SHED, form, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        console.log(result.data);
+        close();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <div className="bg-white p-8 rounded border border-gray-200">
         <h1 className="font-medium text-3xl">Add Shed</h1>
-        <form>
+        <div>
           <div className="mt-8 space-y-6">
             <div>
               <label
@@ -16,7 +50,8 @@ const ShedForm = () => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="farmerId"
+                onChange={handleChange}
                 id="name"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="Enter farmer ID"
@@ -31,8 +66,9 @@ const ShedForm = () => {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                name="numberOfBirds"
+                onChange={handleChange}
+                id="numberOfBirds"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="Enter number of birds"
               />
@@ -46,8 +82,9 @@ const ShedForm = () => {
               </label>
               <input
                 type="text"
-                name="email"
-                id="email"
+                name="dailyFeedQuantity"
+                onChange={handleChange}
+                id="dailyFeedQuantity"
                 className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
                 placeholder="Enter Daily Feed Quantity"
               />
@@ -56,6 +93,10 @@ const ShedForm = () => {
           <div className="space-x-4 mt-8">
             <button
               type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                createShed();
+              }}
               className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50"
             >
               Save
@@ -64,7 +105,7 @@ const ShedForm = () => {
               Cancel
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -12,6 +12,13 @@ export const ENDPOINTS = {
   GET_SALE: "get-sale",
   DELETE_SALE: "delete-sale",
 
+  //Price List
+  UPDATE_PRICE_BY_ID: "update-price",
+  CREATE_PRICE: "create-price",
+  GET_PRICE: "get-prices",
+  GET_PRICE_BY_ID: "get-price",
+  DELETE_PRICE: "delete-price",
+
   // sheds
 
   UPDATE_SHED: "update-shed",

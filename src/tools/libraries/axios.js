@@ -39,6 +39,14 @@ export const salesAxios = axios.create({
   },
 });
 
+export const priceListAxios = axios.create({
+  baseURL: `${baseURL}/api/v1/crate-price/`,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+});
+
 export const shedAxios = axios.create({
   baseURL: `${baseURL}/api/v1/sheds/`,
   headers: {
