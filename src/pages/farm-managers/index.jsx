@@ -3,32 +3,43 @@ import Head from "next/head";
 import Image from "next/image";
 import TopBar from "../../components/topbar";
 import farmer from "../../assets/images/farmer.png";
-import SortTable from "../../components/table/sort-table"
+import SortTable from "../../components/table/sort-table";
 import { farmerHeadings } from "../../constants/tableHeadings";
 import { farmerBody, managerBody } from "../../constants/tableBody";
 // import {managerBody} from "../../constants/managerbody"
-import { tableHeadings } from './../../constants/tableHeadings';
+import { tableHeadings } from "./../../constants/tableHeadings";
+import { useMemo, useEffect, useState } from "react";
+import { useSession, signIn } from "next-auth/react";
+import { ENDPOINTS } from "../../constants/endpoints";
+import { userAxios } from "../../tools/libraries/axios";
 
 function FarmManagers() {
-const farmManagerInformation = [
-  {
-    shedId: 1,
-    farmerName: "Roxanne Aryee",
-    email: "grahamraaphael88@gmail.com",
-    phoneNumber: "+233507111876",
-    address: "21 Mensah Kwao Osantro Rd",
-    role: "Farmer",
-  },
-  {
-    shedId: 1,
-    farmerName: "Roxanne Aryee",
-    email: "grahamraaphael88@gmail.com",
-    phoneNumber: "+233507111876",
-    address: "21 Mensah Kwao Osantro Rd",
-    role: "Farmer",
-  },
-];
+  const { data: session } = useSession();
 
+  const [farmManagers, setFarmManagers] = useState([]);
+
+  const token = session?.user?.accessToken;
+  console.log(token);
+
+  useEffect(() => {
+    // if (!session) {
+    //   signIn();
+    // }
+
+    if (session) getFarmManagers();
+  }, [session]);
+
+  const getFarmManagers = () => {
+    userAxios
+      .get(ENDPOINTS.GET_ALL_FARM_MANAGERS, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        console.log(result.data);
+        setFarmManagers(result.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -40,11 +51,12 @@ const farmManagerInformation = [
       </Head>
       <main className="w-full h-screen">
         <div className="w-full h-full ">
-          <div className="w-full h-[10%] border-4 border-black">
+          <div className="w-full h-[10%] ">
             <TopBar />
           </div>
-          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black flex flex-col">
-            <div className="w-full flex border border-red-500 py-5 px-5 gap-5">
+          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] flex flex-col">
+            {/*  */}
+            {/* <div className="w-full flex border border-red-500 py-5 px-5 gap-5">
               <div className="w-[70%] border bg-white px-10 py-5 flex justify-center">
                 <div className="w-full flex flex-row justify-between">
                   <div className="bg-[#D6C8C4] flex flex-col items-center">
@@ -126,13 +138,15 @@ const farmManagerInformation = [
                 </div>
                 <div></div>
               </div>
-            </div>
-            <div className="">
+            </div> */}
+
+            {/*  */}
+            <div className=" w-full px-20 my-20">
               <div className="">
                 <SortTable
                   headings={tableHeadings.farmerHeadings}
                   // body={managerBody.request}
-                  data={farmManagerInformation}
+                  data={farmManagers}
                   type={"managerBody"}
                 />
               </div>
@@ -142,7 +156,6 @@ const farmManagerInformation = [
       </main>
     </>
   );
-  
 }
 
 export default FarmManagers;

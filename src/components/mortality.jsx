@@ -1,15 +1,16 @@
 import React from "react";
 import Image from "next/image";
+import egg from "../assets/images/eggs.png";
+import chicken from "../assets/images/chicken.png";
 import boom from "../assets/images/boomerang.png";
-import eggcrate from "../assets/images/eggcrate.png";
 
-const FeedConsumption = () => {
+const Mortality = () => {
   return (
     <>
       <div className="flex flex-col">
         <div className="grid grid-cols-3 gap-5 mt-5">
           {/*  */}
-          {/* <div className=" bg-ShedBackground w-full h-40 px-5">
+          <div className=" bg-ShedBackground w-full h-40 px-5">
             <div className="flex flex-row justify-between">
               <p className="text-white text-base font-semibold space-x-6 pt-5">
                 {" "}
@@ -19,46 +20,20 @@ const FeedConsumption = () => {
             </div>
             <div className="flex space-x-6 ">
               <p className="text-white text-6xl font-bold flex flex-col">
-                40<span className="text-sm">sheds</span>
+                6<span className="text-sm">sheds</span>
               </p>
               <div className="pt-5">
                 <p className="text-xs font-medium text-white ">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel,
-                  dicta.
-                </p>
-              </div>
-            </div>
-          </div> */}
-          <div className="flex flex-col ">
-            <div className="flex space-x-3 justify-center">
-              <div className="w-20 h-20 rounded-full bg-[#DE9260] flex flex-col justify-center items-center">
-                <p className="text-center text-md font-bold text-white">50</p>
-                <p className="text-white text-xs font-semibold text-center">
-                  eggs
-                </p>
-              </div>
-              <div className="w-20 h-20 rounded-full bg-[#672B0F] flex flex-col justify-center items-center">
-                <p className="text-center text-md font-bold text-white">50</p>
-                <p className="text-white text-xs font-semibold text-center">
-                  eggs
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center items-center w-full">
-              <div className="flex items-center justify-center w-20 h-20 rounded-full bg-[#EDBB9A] flex-col ">
-                <p className="text-white text-md font-bold text-center">50</p>
-                <p className="text-white text-xs font-semibold text-center">
-                  eggs
+                  There are 6 sheds in total
                 </p>
               </div>
             </div>
           </div>
-
           {/* rate card  */}
           <div className="w-full h-40 flex justify-between">
             <div className=" flex flex-col">
-              <p className=" text-Text text-xl w-10 font-semibold">
-                Feed Consumption
+              <p className=" text-Text text-3xl w-10 font-semibold">
+                Mortality Rates
               </p>
               <div className="flex space-x-2 ">
                 <div className="w-14 h-14 rounded-full bg-ShedBackground flex flex-col justify-center items-center ">
@@ -81,8 +56,8 @@ const FeedConsumption = () => {
             </div>
             <div className="rounded-bl-[50%] overflow-hidden">
               <Image
-                src={eggcrate}
-                alt="eggcrate"
+                src={chicken}
+                alt="chicken"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -124,4 +99,4 @@ const FeedConsumption = () => {
   );
 };
 
-export default FeedConsumption;
+export default Mortality;

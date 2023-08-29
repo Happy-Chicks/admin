@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import TopBar from "../../components/topbar";
+import { useMemo, useEffect } from "react";
+import { useSession, signIn } from "next-auth/react";
+import ModalOverlay from "../../components/modalOverlay";
+
+import ShedForm from "../../components/create-shed-form";
+import FarmManagerForm from "../../components/farm-manager-form";
+import FarmerForm from "../../components/farmerForm";
+import PriceListForm from "../../components/priceListFrom";
 
 function Management() {
+  const { data: session } = useSession();
+  const [showShedForm, setShowShedForm] = useState(false);
+  const [showFarmerForm, setShowFarmerForm] = useState(false);
+  const [showFarmManagerForm, setShowFarmManagerForm] = useState(false);
+  const [showPriceListForm, setShowPriceListForm] = useState(false);
+
+  // functions to close the modals
+  const closeShedForm = () => {
+    setShowShedForm(false);
+  };
+  const closeFarmerForm = () => {
+    setShowFarmerForm(false);
+  };
+  const closeFarmManagerForm = () => {
+    setShowFarmManagerForm(false);
+  };
+  const closePriceListForm = () => {
+    setShowPriceListForm(false);
+  };
+
+  useEffect(() => {
+    // if (!session) {
+    //   signIn();
+    // }
+  }, []);
   return (
     <>
       <Head>
@@ -13,11 +46,73 @@ function Management() {
       </Head>
       <main className="w-full h-screen">
         <div className="w-full h-full ">
-          <div className="w-full h-[10%] border-4 border-black">
+          <div className="w-full h-[10%]">
             <TopBar />
           </div>
-          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black">
-            <p>Managers</p>
+          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4">
+            {showShedForm && (
+              <ModalOverlay close={closeShedForm} component={<ShedForm />} />
+            )}
+
+            {showFarmerForm && (
+              <ModalOverlay
+                close={closeFarmerForm}
+                component={<FarmerForm />}
+              />
+            )}
+
+            {showFarmManagerForm && (
+              <ModalOverlay
+                close={closeFarmManagerForm}
+                component={<FarmManagerForm />}
+              />
+            )}
+
+            {showPriceListForm && (
+              <ModalOverlay
+                close={closePriceListForm}
+                component={<PriceListForm />}
+              />
+            )}
+
+            <div className="flex flex-row items-center justify-between h-full">
+              <div className="w-[50%] h-[100%] flex flex-col items-center justify-between">
+                <div
+                  onClick={() => {
+                    setShowFarmerForm(true);
+                  }}
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                >
+                  Create Farmer
+                </div>
+                <div
+                  onClick={() => {
+                    setShowFarmManagerForm(true);
+                  }}
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                >
+                  Create Farm Manager
+                </div>
+              </div>
+              <div className="w-[50%] h-[100%] flex flex-col items-center justify-between">
+                <div
+                  onClick={() => {
+                    setShowShedForm(true);
+                  }}
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                >
+                  Create Shed
+                </div>
+                <div
+                  onClick={() => {
+                    setShowPriceListForm(true);
+                  }}
+                  className="h-[40%] bg-white w-[70%] m-10 flex items-center justify-center rounded-2xl"
+                >
+                  Create Price List
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>

@@ -3,63 +3,43 @@ import Head from "next/head";
 import TopBar from "../components/topbar";
 import StatsContainer from "../components/statsContainer";
 import { MaterialReactTable } from "material-react-table";
-import { useMemo } from "react";
-import SortTable from './../components/table/sort-table';
-import { tableHeadings } from './../constants/tableHeadings';
+import { useMemo, useEffect, useState } from "react";
+import SortTable from "./../components/table/sort-table";
+import { tableHeadings } from "./../constants/tableHeadings";
 import { tableBody } from "../constants/tableBody";
-
+import { useSession, signIn } from "next-auth/react";
+import { ENDPOINTS } from "../constants/endpoints";
+import { shedRecordAxios } from "../tools/libraries/axios";
 
 export default function Home() {
-  const information = [
-    {
-      shedId: 1,
-      farmerName: "Raphael Graham",
-      eggNumber: 1,
-      feedQuantity: 1,
-      brokenEggs: 1,
-      deadBirds: 1,
-    },
-    {
-      shedId: 1,
-      farmerName: "Raphael Graham",
-      eggNumber: "2 eggs",
-      feedQuantity: 1,
-      brokenEggs: 1,
-      deadBirds: 1,
-    },
-    {
-      shedId: 1,
-      farmerName: "Raphael Graham",
-      eggNumber: 1,
-      feedQuantity: 1,
-      brokenEggs: 1,
-      deadBirds: 1,
-    },
-    {
-      shedId: 1,
-      farmerName: "Raphael Graham",
-      eggNumber: 1,
-      feedQuantity: 1,
-      brokenEggs: 1,
-      deadBirds: 1,
-    },
-    {
-      shedId: 1,
-      farmerName: "Raphael Graham",
-      eggNumber: 1,
-      feedQuantity: 1,
-      brokenEggs: 1,
-      deadBirds: 1,
-    },
-    {
-      shedId: 1,
-      farmerName: "Raphael Graham",
-      eggNumber: 1,
-      feedQuantity: 1,
-      brokenEggs: 1,
-      deadBirds: 1,
-    },
-  ];
+  const { data: session } = useSession();
+
+  const [recentRecords, setRecentRecord] = useState([]);
+
+  const token = session?.user?.accessToken;
+
+  console.log(token);
+  useEffect(() => {
+    // if (!session) {
+    //   signIn();
+    // }
+
+    if (session) getRecentRecords();
+  }, [session]);
+
+  const getRecentRecords = () => {
+    console.log(token);
+    shedRecordAxios
+      .get(ENDPOINTS.GET_ALL_RECORDS, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        console.log(result.data);
+        setRecentRecord(result.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const sortObject = { ID: "shedId", farmer_name: "farmerName" };
 
   // const columns = useMemo(() => [
@@ -116,7 +96,7 @@ export default function Home() {
           </div>
           <div className="w-full h-[90%] flex flex-col overflow-y-scroll ">
             {/* 1st row */}
-            <div className="w-full flex flex-row border border-red-500 py-5 px-5 gap-5">
+            <div className="w-full flex flex-row py-5 px-5 gap-5">
               {/* statsContainer */}
               <div className="w-[70%] border bg-white px-10 py-5 flex justify-center">
                 <StatsContainer />
@@ -152,8 +132,8 @@ export default function Home() {
                 <div></div>
               </div>
             </div>
-            <div className="flex border border-green-500 p-5 items-center justify-between">
-              <div className="border flex flex-col w-[60%] ">
+            <div className="flex  p-5 items-center justify-between">
+              <div className="flex flex-col w-full ">
                 <div className="flex flex-col">
                   <p className="capitalize text-[#2F2F2F] font-bold ">
                     information
@@ -162,34 +142,10 @@ export default function Home() {
                 </div>
 
                 <div className=" w-[100%] p-2">
-                  {/* <MaterialReactTable
-                    columns={columns}
-                    data={information}
-                    // enableRowSelection
-                    // enableColumnOrdering
-                    // enableGlobalFilter={false}
-                    enableColumnFilterModes={false}
-                    enableGlobalFilterSelection={false}
-                    enableColumnActions={false}
-                    enableFilters={false}
-                    enableFilterMatchHighlighting={false}
-                    enableDensityToggle={false}
-                    enableTopToolbar={false}
-                    enablePagination={false}
-                    // enableColumnResizing
-                    // columnResizeMode="onEnd"
-                    muiTableHeadCellProps={{
-                      sx: {
-                        width: "100%",
-                        // height: "10%",
-                        tableLayout: "fixed",
-                      },
-                    }}
-                  /> */}
                   <SortTable
                     headings={tableHeadings.request}
                     // body={tableBody.request}
-                    data={information}
+                    data={recentRecords}
                     type={"request"}
                     sortObject={sortObject}
                     //       searchType={"name"}
@@ -200,13 +156,6 @@ export default function Home() {
                     //         localStorage.setItem("myRequest", JSON.stringify(item));
                     //       }}
                   />
-                </div>
-              </div>
-              <div className="border flex flex-col w-[40%]">
-                <div className="flex flex-col">
-                  <p className="capitalize text-[#2F2F2F] font-bold">
-                    overall statistics
-                  </p>
                 </div>
               </div>
             </div>

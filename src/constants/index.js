@@ -3,7 +3,8 @@ export const navLinks = [
   { name: "farmers", link: "farmers" },
   { name: "farm managers", link: "farm-managers" },
   { name: "sheds", link: "sheds" },
-  { name: "orders", link: "orders" },
+  { name: "records", link: "records" },
+  // { name: "orders", link: "orders" },
   { name: "sales", link: "sales" },
   { name: "management", link: "management" },
 ];

@@ -5,8 +5,37 @@ import SortTable from "../../components/table/sort-table";
 import { shedHeadings } from "../../constants/tableHeadings";
 import { shedBody } from "../../constants/tableBody";
 import { tableHeadings } from "./../../constants/tableHeadings";
+import { useMemo, useEffect, useState } from "react";
+import { useSession, signIn } from "next-auth/react";
+import { ENDPOINTS } from "../../constants/endpoints";
+import { shedAxios } from "../../tools/libraries/axios";
 
 function Sheds() {
+  const { data: session } = useSession();
+
+  const [sheds, setSheds] = useState([]);
+
+  const token = session?.user?.accessToken;
+  console.log(token);
+  useEffect(() => {
+    // if (!session) {
+    //   signIn();
+    // }
+    if (session) getSheds();
+  }, [session]);
+
+  const getSheds = () => {
+    shedAxios
+      .get(ENDPOINTS.GET_ALL_SHEDS, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((result) => {
+        console.log(result.data);
+        setSheds(result.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const information = [
     {
       farmerId: "#2333",
@@ -29,15 +58,15 @@ function Sheds() {
       </Head>
       <main className="w-full h-screen">
         <div className="w-full h-full ">
-          <div className="w-full h-[10%] border-4 border-black">
+          <div className="w-full h-[10%] ">
             <TopBar />
           </div>
-          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] border-4 border-black">
-            <div className="  h-full ">
+          <div className="w-full h-[87%] overflow-y-scroll mt-[1.5%] p-20">
+            <div className="h-full">
               <SortTable
                 headings={tableHeadings.shedHeadings}
                 // body={shedBody.request}
-                data={information}
+                data={sheds}
                 type={"shedBody"}
               />
             </div>

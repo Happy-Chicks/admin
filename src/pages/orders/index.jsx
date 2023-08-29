@@ -1,17 +1,28 @@
 import React from "react";
 import Head from "next/head";
 import TopBar from "../../components/topbar";
-import SortTable from './../../components/table/sort-table';
+import SortTable from "./../../components/table/sort-table";
 import { tableHeadings } from "../../constants/tableHeadings";
+import { useMemo, useEffect } from "react";
+import { useSession, signIn } from "next-auth/react";
 
 function Orders() {
-  const orderInformation =[{
-    farmerID:1,
-    customerName:"Roxanne Aryee",
-    numberOfCrates:200,
-    orderDate:"2022-05-01",
-    customerPhoneNumber:"+233507111876"
-  }]
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (!session) {
+      signIn();
+    }
+  }, []);
+
+  const orderInformation = [
+    {
+      farmerID: 1,
+      customerName: "Roxanne Aryee",
+      numberOfCrates: 200,
+      orderDate: "2022-05-01",
+      customerPhoneNumber: "+233507111876",
+    },
+  ];
   return (
     <>
       <Head>

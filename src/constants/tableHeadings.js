@@ -1,29 +1,27 @@
 export const tableHeadings = {
   request: [
     "Shed ID",
-    "Farmer Name",
-    "No of Eggs",
+    "Farmer ID",
+    "Collection Period",
     "Quantity of Feed",
+    "Number of Crates",
+    "No of Eggs",
     "No of Broken Eggs",
-    "Number of Dead Birds"
+    "Number of Dead Birds",
   ],
-farmerHeadings:[
+  farmerHeadings: [
     "ID",
-    "Name",
+    "Last Name",
+    "Other Name",
     "Email",
     "Phone Number",
     "Address",
-    "Role"
+    "Role",
   ],
 
-  shedHeadings:[
-     "Farmer ID",
-     "Number of Birds",
-    "Daily Feed Quantity",
-   
-  ],
+  shedHeadings: ["Farmer ID", "Number of Birds", "Daily Feed Quantity"],
 
-  orderHeadings:[
+  orderHeadings: [
     "Farmer ID",
     "Customer Name",
     "Number of Crates",
@@ -31,35 +29,26 @@ farmerHeadings:[
     "Customer Phone Number",
   ],
 
+  saleHeadings: [
+    "Farmer ID",
+    "Customer Name",
+    "Small Crates",
+    "Medium Crates",
+    "Large Crates",
+    "Extra Large Crates",
+    "Jumbo Crates",
+    "Date",
+    "Customer Phone Number",
+    "Total Amount",
+  ],
+
+  recordHeadings: [
+    "Shed ID",
+    "farmer ID",
+    "Collection Period",
+    "Feed Quantity",
+    "Number of Egg Pieces",
+    "Number of Broken Eggs",
+    "Number of Dead Birds",
+  ],
 };
-
-// export const farmerHeadings = {
-//   request:[
-//     "ID",
-//     "Name",
-//     "Email",
-//     "Phone Number",
-//     "Address",
-//     "Role"
-//   ]
-// }
-
-// export const shedHeadings={
-//   request:[
-//     "Shed ID",
-//     "Number of Birds",
-//     "Daiiy Feed Quantity",
-//   ]
-// }
-
-// export const orderHeadings={
-//   request:[
-//     "Farmer ID",
-//     "Customer Name",
-//     "Number of Crates",
-//     "Order Date",
-//     "Customer Phone Number",
-//   ]
-// }
-
-
